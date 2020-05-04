@@ -22,7 +22,6 @@ class Enemy {
 
     move() {
         this.startX -= this.dx
-        
     } 
 
     collisionDetection(drawId) {    
