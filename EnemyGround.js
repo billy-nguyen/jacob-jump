@@ -3,6 +3,38 @@
     ****Needs to refactor code into more organized files before continuing to write more "complex" stuff
     ****ESPECIALLY the collisionDetection function, lots of dirty code
 */
+
+//static class? we'll see
+class EnemyController {
+    constructor() {
+        this.Enemies = []
+        this.x = 20
+    }
+    spawn() {
+        console.log(this.enemies.length)
+        let random = Math.floor(Math.random()*100) + 1
+        if(random < 60 && this.enemies.length == 0) {
+            this.enemies.push(new Enemy())
+        }
+        else if(random < 60 && this.enemies.length > 0 && this.enemies[this.enemies.length - 1].startX < 800) {
+            this.enemies.push(new Enemy())
+        }
+    }
+
+    clear() {
+        if(this.enemies.length > 0 && this.enemies[0].startX < 0) {
+            this.enemies.shift()
+        }
+    }
+
+    draw() {
+        this.enemies.forEach(enemy => {
+            enemy.move()
+            enemy.draw(ctx)
+        })
+    }
+}
+
 class Enemy {
     constructor() {
         this.startX = canvas.width - 150

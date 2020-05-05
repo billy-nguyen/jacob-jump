@@ -21,10 +21,10 @@ const player = {
 
 let enemies = []
 
+const enemyController = new EnemyController()
+
+let drawId
 let spawn, checkHit
-
-console.log(Math.floor(Math.random()*100))
-
 
 document.addEventListener("keydown", keyDownHandler, false)
 document.addEventListener("click", mouseClick, false)
@@ -53,6 +53,7 @@ function mouseClick(event) {
         checkHit = setInterval(checkCollision)
     }
 }
+
 
 //fill play area
 function drawPlayArea() {
@@ -90,14 +91,12 @@ function drawEnemy() {
     enemies.forEach(enemy => {
         enemy.move()
         enemy.draw(ctx)
-        //enemy.collisionDetection(drawId)
     })
 }
 
 function spawnEnemy() {
     //probability and distance
     let random = Math.floor(Math.random()*100) + 1
-    //console.log(random)
     if(random < 60 && enemies.length == 0) {
         enemies.push(new Enemy())
     }
@@ -118,9 +117,8 @@ function clearEnemy() {
     }
 }
 
-let drawId
+
 function draw() {
-    //checkCollision()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     drawPlayArea()
     drawPlayer()
@@ -131,9 +129,5 @@ function draw() {
 
 drawPlayArea()
 drawPlayer()
-// const spawnInterval = setInterval(spawnEnemy, 1500)
-// const collisionInterval = setInterval(checkCollision)
-//draw()
-
 
 
